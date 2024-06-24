@@ -11,6 +11,7 @@ import Movies from '@/services/Movies.ts';
 const router = useRouter(); // para la Navegacion
 const route = useRoute(); //  para obtener param del path
 
+// instancia de store
 const store = usePersonStore();
 
 const personSelect = ref<Person>();
@@ -18,7 +19,10 @@ const moviesfilm = ref<Movie[]>();
 
 onMounted(() => {
     console.log(store);
+    //uso de route
     const personId = Number(route.params.id);
+
+    // uso de store
     personSelect.value = store.getPersonById(personId);
     moviesfilm.value = personSelect.value?.known_for;
 });
