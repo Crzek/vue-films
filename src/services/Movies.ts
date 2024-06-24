@@ -14,7 +14,16 @@ const getTrendingMovies = async (
     return response.data;
 };
 
+const getSingleMovie = async (type: string = 'movie', id: number) => {
+    // request endpoint =>  https://api.themoviedb.org/3/movie/{movie_id}
+    const response = await api.get(`/${type}/${id}`);
+    return response.data;
+};
+
+// para importar
+// import Movies from '@/services/Movies.ts';
 export default {
     getTrendingMovies,
-    imageURL
+    imageURL,
+    getSingleMovie
 };

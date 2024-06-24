@@ -16,9 +16,9 @@ import type { Movie } from '@/types/Movie';
 import MovieListItem from '@/components/MovieListItem.vue';
 
 const props = defineProps<{
-    movies: Movie[]; //array de typo Movie
-    title: string;
-    type: string;
+    movies: Movie[]; //array de typo Movie, contiene todos los Movies
+    title: string; // title from Slider
+    type: string; // tipe Slider, movie, tv or people
 }>();
 
 const modules = [Navigation, Pagination, Scrollbar];
@@ -35,9 +35,10 @@ const onSlideChange = () => {
 <template>
     <div class="movie-list-container">
         <!-- El contenedor Slider -->
+        <h2>{{ title }}</h2>
         <Swiper
-            :slide-per-vie="'auto'"
-            :space="4"
+            :slides-per-view="'auto'"
+            :space-between="20"
             navigation
             :scrollbar="{
                 draggable: true
@@ -53,7 +54,7 @@ const onSlideChange = () => {
                 class="swiperSlider"
             >
                 <!-- aqui se deven de poner varios fotos para Mostrar -->
-                <MovieListItem :movie="movie" :type="type" :title="title" />
+                <MovieListItem :movie="movie" :type="type" />
             </SwiperSlide>
         </Swiper>
     </div>
@@ -63,4 +64,7 @@ const onSlideChange = () => {
 .swiperSlider {
     width: auto !important;
 }
+/* .movie-list-container {
+    border: 1px solid red;
+} */
 </style>

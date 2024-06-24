@@ -1,29 +1,57 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { type Ref, ref, onMounted } from 'vue';
 // import MovieComponent from '@/components/MovieComponent.vue';
 import Movies from '@/services/Movies.ts';
 import type { Movie } from '@/types/Movie';
 
-import { onMounted } from 'vue';
 // import MovieListItem from './MovieListItem.vue';
 import MovieSlider from '@/components/MovieSlider.vue';
 
+// pinia Context
+import { usePersonStore } from '@/stores/Person';
+
+const personStore = usePersonStore();
+
 // ref que guardara un array que contedra, Movie
 const allMovies = ref<Movie[]>([]);
+// TV shows
+const tvShows = ref<Movie[]>([]);
+
+// wide
+const person = ref<Movie[]>([]);
+
+// tipado para Ref movies[]
+const getMovies = async (
+    typeScreen: string, //person/ movie/tv
+    dataSave: Ref<Movie[]>,
+    timeRes: string = 'week'
+): Promise<any[]> => {
+    // objeto que guardara movies
+    // let { results } = await Movies.getTrendingMovies();
+    const { results } = await Movies.getTrendingMovies(typeScreen, timeRes);
+    console.log('r.data', results);
+    dataSave.value = results;
+    return results;
+};
 
 // obtener resultados desde API
 onMounted(async () => {
-    // objeto que guardara movies
-    const { results } = await Movies.getTrendingMovies();
-    allMovies.value = results;
-    console.log('r.data', results);
+    // // tv shows
+    getMovies('movie', allMovies);
+    getMovies('tv', tvShows);
+    personStore.setPersons(await getMovies('person', person));
+    // // persona
+    // results = await Movies.getTrendingMovies('person');
+    // person.value = results;
 });
 </script>
 
 <template>
     <div class="movies-all">
-        <!-- Contenido de IMagenes en Vertical -->
+        <!-- Contenido de IMagenes en Vertical(movies) -->
+        <MovieSlider :movies="tvShows" :type="'wide'" :title="'TvShows'" />
         <MovieSlider :movies="allMovies" :type="'poster'" :title="'Trending'" />
+        <MovieSlider :movies="person" :type="'person'" :title="'Persons'" />
     </div>
 </template>
 
