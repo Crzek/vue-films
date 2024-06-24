@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
+import { useRouter, useRoute, RouterLink } from 'vue-router';
 // import { storeToRefs } from 'pinia';
 import { usePersonStore } from '@/stores/Person';
 
@@ -42,13 +42,15 @@ onMounted(() => {
                 <!-- <template v-if="moviesfilm && moviesfilm.length > 0"> -->
                 <ul v-if="moviesfilm && moviesfilm.length > 0">
                     <li v-for="movie in moviesfilm" :key="`movie-${movie.id}`">
-                        {{
-                            movie?.title
-                                ? movie.title
-                                : movie?.name
-                                  ? movie.name
-                                  : 'Noy Hay'
-                        }}
+                        <RouterLink :to="`/movie/${movie.id}`">
+                            {{
+                                movie?.title
+                                    ? movie.title
+                                    : movie?.name
+                                      ? movie.name
+                                      : 'Noy Hay'
+                            }}
+                        </RouterLink>
                     </li>
                 </ul>
                 <!-- </template> -->
