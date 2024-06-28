@@ -46,6 +46,7 @@ const onSlideChange = () => {
             :modules="modules"
             @swiper="onSwiper"
             @slideChange="onSlideChange"
+            class="movie-swiper"
         >
             <!-- Elementor que queremos mostrar -->
             <SwiperSlide
@@ -61,9 +62,10 @@ const onSlideChange = () => {
 </template>
 
 <style scoped>
-.swiperSlider {
-    width: auto !important;
-}
+/* .movie-swiper {
+    width: 100%;
+    height: 100%;
+} */
 /* .movie-list-container {
     border: 1px solid red;
 } */

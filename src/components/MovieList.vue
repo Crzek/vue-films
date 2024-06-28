@@ -55,4 +55,11 @@ onMounted(async () => {
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.movies-all {
+    /* width: 100%; */
+}
+body {
+    display: block;
+}
+</style>

@@ -1,16 +1,14 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router';
+import { ref } from 'vue';
+import { RouterView } from 'vue-router';
+
+// NavABr responsive
+import ResponsiveNavbar from '@/components/navbar/ResponsiveNavbar.vue';
 </script>
 
 <template>
-    <header>
-        <nav>
-            <RouterLink to="/">Home</RouterLink>
-            <RouterLink to="/movies">Movies</RouterLink>
-        </nav>
-    </header>
-
+    <ResponsiveNavbar />
     <RouterView />
 </template>
 
-<style scoped></style>
+<style></style>

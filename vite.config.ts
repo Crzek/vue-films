@@ -10,6 +10,7 @@ export default defineConfig({
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url))
         }
-    },
-    base: '/vue-films/'
+    }
+    // base es para hacer deploy
+    // base: '/vue-films/'
 });

@@ -42,8 +42,8 @@ watch(
     (newType) => {
         isPoster.value = newType === 'poster' || newType === 'person';
         isWide.value = newType === 'wide';
-        console.log('isPoster', isPoster);
-        console.log('isWide', isWide);
+        // console.log('isPoster', isPoster);
+        // console.log('isWide', isWide);
     },
     { immediate: true } // Para que se ejecute en la inicialización
 );
@@ -94,6 +94,6 @@ watch(
 }
 
 .image-wide {
-    width: 600px;
+    width: 100%;
 }
 </style>
