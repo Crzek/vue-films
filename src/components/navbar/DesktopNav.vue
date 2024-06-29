@@ -27,6 +27,8 @@ const props = defineProps<{
     align-items: center;
     gap: 1rem;
 
-    font-size: 1em;
+    font-size: 2em;
+
+    height: 100%;
 }
 </style>
