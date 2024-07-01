@@ -64,7 +64,9 @@ const styleNav = reactive({
 
 <style scoped>
 .full {
-    width: 100%;
+    width: 100% !important;
+    /* width: auto !important; */
+    /* border: 1px solid red; */
 
 }
 /* Estilo para el nav móvil */

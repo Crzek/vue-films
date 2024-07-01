@@ -4,8 +4,9 @@ import { useRouter, useRoute } from 'vue-router';
 import { storeToRefs } from 'pinia';
 
 import { useMovieStore } from '@/stores/movie';
-import type { Movie } from '@/types/Movie';
+import  type { Movie } from '@/types/Movie';
 import Movies from '@/services/Movies.ts';
+import MovieSlider from './MovieSlider.vue';
 
 const router = useRouter(); // para la Navegacion
 const route = useRoute(); //  para obtener param del path
@@ -19,19 +20,32 @@ const { movieSelect } = storeToRefs(store);
 const movieTitlte = ref<string>();
 const movie = ref<Movie>();
 
-onMounted(async () => {
-    console.log(route.params);
-    console.log(route.query);
-    console.log(movieSelect);
+// Metodo para obtener la pelicula
+const getMovie = async (id:number, type:string ) =>{
+    const r  =  await Movies.getSingleMovie(type, id);
+    movie.value = r;
+    movieTitlte.value = r.title ? r.title : r.name;
+}
 
+onMounted(async () => {
     // // casting con TypeScript(type)
     const typeMovie: string = route.query.type as string;
     const idmovie: number = Number(route.params.id);
-
+    
+    if(movieSelect.value){
+        movie.value = movieSelect.value;
+        movieTitlte.value = store.movieTitle;
+        
+    }else {
+        getMovie(idmovie, typeMovie);
+        
+    }
     // store set movie
     await store.getMovie(typeMovie, idmovie);
     movie.value = store.movieSelect;
     movieTitlte.value = store.movieTitle;
+
+
 });
 </script>
 
@@ -40,7 +54,7 @@ onMounted(async () => {
         <div class="text">
             <h2>{{ movieTitlte }}</h2>
             <div class="values">
-                <p class="votes">{{ movie?.vote_average }}</p>
+                <p class="votes">{{ movie?.vote_average }} Votes</p>
             </div>
             <div class="resum">
                 <p class="title">Resum</p>
@@ -59,17 +73,19 @@ onMounted(async () => {
 <style scoped>
 .container-movie-item {
     display: flex;
+    flex-direction:column-reverse;
 
     justify-content: center;
     align-items: center;
     gap: 10px;
+    margin: 1em;
 }
 p,
 h2 {
     color: white;
 }
 h2 {
-    font-size: 500%;
+    font-size: 300%;
 }
 
 .votes {
@@ -86,6 +102,17 @@ h2 {
 }
 
 .resum .title {
-    font-size: 200%;
+    font-size: 1.5em ;
+    /* font-size: 100%; */
+}
+
+
+@media (min-width: 1024px) {
+
+.container-movie-item {
+    flex-direction: row;
+    gap: 1em;
+    margin: 2em;
+}
 }
 </style>

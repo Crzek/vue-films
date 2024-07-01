@@ -68,3 +68,50 @@ onMounted(() => {
         </div>
     </div>
 </template>
+
+<style scoped>
+.container-movie-item {
+    display: flex;
+    flex-direction:column-reverse;
+
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 1em;
+}
+p,
+h2 {
+    color: white;
+}
+h2 {
+    font-size: 300%;
+}
+
+.votes {
+    font-size: large;
+    color: wheat;
+}
+
+.image img {
+    max-height: 100vh;
+}
+
+.resum {
+    margin-top: 1em;
+}
+
+.resum .title {
+    font-size: 1.5em ;
+    /* font-size: 100%; */
+}
+
+
+@media (min-width: 1024px) {
+
+.container-movie-item {
+    flex-direction: row;
+    gap: 1em;
+    margin: 2em;
+}
+}
+</style>

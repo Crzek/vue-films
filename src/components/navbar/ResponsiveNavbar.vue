@@ -10,9 +10,9 @@ import { useRoute } from 'vue-router';
 const route = useRoute();
 
 // props
-const props = defineProps<{
-    // routes: RouteNav[];
-}>();
+// const props = defineProps<{
+//     // routes: RouteNav[];
+// }>();
 
 // const isMobile = ref(false);
 const isMobile = ref(window.innerWidth <= 600);
@@ -44,7 +44,7 @@ const routes = ref<RouteNav[]>([
 </script>
 
 <template>
-    <header v-if="isMobile" :class="{ mobile: isMobile, full: isFull }">
+    <header v-if="isMobile" :class="{ mobile: isMobile, 'full-h': isFull }">
         <MobileNav :routes="routes" :isFull="isFull"/>
     </header>
     <header v-else :class="{ desktop: !isMobile, full: isFull }">
@@ -53,7 +53,7 @@ const routes = ref<RouteNav[]>([
 </template>
 
 <style scoped>
-.full {
+.full-h {
     height: 100vh;
 }
 </style>

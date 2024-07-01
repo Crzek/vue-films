@@ -49,9 +49,9 @@ onMounted(async () => {
 <template>
     <div class="movies-all">
         <!-- Contenido de IMagenes en Vertical(movies) -->
-        <MovieSlider :movies="tvShows" :type="'wide'" :title="'TvShows'" />
-        <MovieSlider :movies="allMovies" :type="'poster'" :title="'Trending'" />
-        <MovieSlider :movies="person" :type="'person'" :title="'Persons'" />
+        <MovieSlider :movies="tvShows" :type="'wide'" :title="'TvShows'" :view="'auto'"/>
+        <MovieSlider :movies="allMovies" :type="'poster'" :title="'Trending'" :view="2" />
+        <MovieSlider :movies="person" :type="'person'" :title="'Persons'" :view="2"/>
     </div>
 </template>
 

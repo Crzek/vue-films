@@ -19,6 +19,7 @@ const props = defineProps<{
     movies: Movie[]; //array de typo Movie, contiene todos los Movies
     title: string; // title from Slider
     type: string; // tipe Slider, movie, tv or people
+    view: number | "auto"; // number of slides to show
 }>();
 
 const modules = [Navigation, Pagination, Scrollbar];
@@ -37,7 +38,7 @@ const onSlideChange = () => {
         <!-- El contenedor Slider -->
         <h2>{{ title }}</h2>
         <Swiper
-            :slides-per-view="'auto'"
+            :slides-per-view="props.view"
             :space-between="20"
             navigation
             :scrollbar="{
@@ -62,11 +63,5 @@ const onSlideChange = () => {
 </template>
 
 <style scoped>
-/* .movie-swiper {
-    width: 100%;
-    height: 100%;
-} */
-/* .movie-list-container {
-    border: 1px solid red;
-} */
+
 </style>
